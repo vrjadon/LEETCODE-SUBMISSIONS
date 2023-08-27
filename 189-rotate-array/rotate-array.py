@@ -5,13 +5,9 @@ class Solution:
         """
         n=len(nums)
         k=k%n
-        if n<=1:
+        if n<=1 or k==0:
             return nums
-        temp=[]
-        for i in range(k):
-            temp.append(nums[n - k + i])
-        for i in range(n-k-1,-1,-1):
-            nums[i+k]=nums[i]
-
-        for i in range(k):
-            nums[i]=temp[i]
+        temp=nums[-k:]
+        nums[k:]=nums[:n-k]
+        nums[:k]=temp
+        return nums
